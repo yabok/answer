@@ -1,0 +1,2 @@
+-e git+https://github.com/python-trio/trio#egg=trio
+h11
