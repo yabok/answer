@@ -14,7 +14,7 @@ setup(name='answer'
                   ,'License :: OSI Approved :: ISC License (ISCL)'
                   ,'Programming Language :: Python :: 3.6']
 
-     ,packages=find_packages(),
+     ,packages=find_packages()
 
      ,install_requires=['trio', 'h11']
      ,dependency_links=['git+https://github.com/python-trio/trio#egg=trio'])
