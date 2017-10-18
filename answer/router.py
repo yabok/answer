@@ -1,6 +1,7 @@
 from operator import itemgetter
 import re
 
+
 class Router:
     def __init__(self):
         self.map = {}
@@ -35,10 +36,10 @@ class Router:
             match_length = match.end()
             remaining_path = path[match_length:]
             matched_groups = groups.copy().update(match.groupdict())
-            matches.append((match_length
-                           ,{"path": remaining_path
-                            ,"handlers": value
-                            ,"groups": matched_groups}))
+            matches.append((match_length,
+                            {"path": remaining_path,
+                             "handlers": value,
+                             "groups": matched_groups}))
 
         (length, longest_match) = max(matches, key=itemgetter(0))
         groups.update(longest_match["groups"])
