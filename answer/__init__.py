@@ -1,4 +1,3 @@
-import json
 from functools import partial
 from wsgiref.handlers import format_date_time
 
@@ -15,7 +14,8 @@ class Answer:
         handler = partial(handle_connection, answer=self)
         serve_tcp = partial(trio.serve_tcp, handler, port=port, host=host)
         async with trio.open_nursery() as nursery:
-            listeners = await nursery.start(serve_tcp)
+            await nursery.start(serve_tcp)
+
 
 class Router:
     routes = {}
@@ -140,8 +140,8 @@ class Connection:
             await self.stream.aclose()
 
     def basic_headers(self):
-        return [(b'Date', format_date_time(None).encode())
-               ,(b'Server', self.ident)]
+        return [(b'Date', format_date_time(None).encode()),
+                (b'Server', self.ident)]
 
     async def _read_from_peer(self):
         if self.conn.they_are_waiting_for_100_continue:
